@@ -1,30 +1,35 @@
-# 📱 Mobile Automation Framework - Appium + Python
+# Mobile Automation Framework - Appium + Python
 
-This project demonstrates a mobile automation framework built with Appium and Python, focusing on real device interaction and scalable test architecture.
+This repository contains a mobile automation framework built with Appium, Python and Pytest.
 
-## 🚀 Tech Stack
+## Tech Stack
 - Python
 - Appium
 - Pytest
 - Android Emulator
 - UiAutomator2
 
-## 🧪 Test Coverage
-- Chrome search automation (real mobile interaction)
-- Framework structured for future banking scenarios:
+## Current Scope
+- Real mobile automation using Chrome on Android Emulator
+- Page Object Model structure
+- Screenshot on failure
+- Pytest-based execution
+
+## Project Structure
+- `pages/` page objects
+- `tests/` smoke and future regression tests
+- `utils/` driver and helper utilities
+- `config/` configuration and capabilities
+
+## Current Test Status
+- Chrome search flow automated and passing
+- Future banking scenarios intentionally skipped for next phase:
   - login
   - balance
   - transfer
   - history
   - logout
 
-## 🏗️ Architecture
-- Page Object Model (POM)
-- Modular structure (pages, tests, utils, config)
-- Pytest fixtures
-- Screenshot on failure
-
-## ▶️ How to run
-
+## How to Run
 ```bash
 pytest -v -s
