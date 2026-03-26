@@ -1,41 +1,30 @@
-# Appium Mobile Banking Framework
+# 📱 Mobile Automation Framework - Appium + Python
 
-Framework inicial de automação mobile com Appium + Python + Pytest, focado em cenários de QA para um app bancário simulado.
+This project demonstrates a mobile automation framework built with Appium and Python, focusing on real device interaction and scalable test architecture.
 
-## Objetivo
-Demonstrar automação mobile com foco em qualidade, cobrindo cenários de negócio como:
-- login
-- saldo
-- transferência
-- histórico
-- logout
-
-## Stack
+## 🚀 Tech Stack
 - Python
 - Appium
 - Pytest
 - Android Emulator
 - UiAutomator2
 
-## Estrutura
-- `pages/`: Page Objects
-- `tests/`: testes smoke e regression
-- `utils/`: driver, waits e screenshots
-- `config/`: capabilities e configurações
-- `data/`: massa de dados simples
+## 🧪 Test Coverage
+- Chrome search automation (real mobile interaction)
+- Framework structured for future banking scenarios:
+  - login
+  - balance
+  - transfer
+  - history
+  - logout
 
-## Como executar
+## 🏗️ Architecture
+- Page Object Model (POM)
+- Modular structure (pages, tests, utils, config)
+- Pytest fixtures
+- Screenshot on failure
+
+## ▶️ How to run
+
 ```bash
-python -m venv .venv
-.\.venv\Scripts\activate
-python -m pip install -r requirements.txt
-pytest
-```
-
-## Relatório HTML
-```bash
-pytest --html=report.html --self-contained-html
-```
-
-## Observação
-Os locators atuais são placeholders iniciais e devem ser ajustados para o app/tela real usada no projeto.
+pytest -v -s
