@@ -30,6 +30,14 @@ This repository contains a mobile automation framework built with Appium, Python
   - history
   - logout
 
+## Test Coverage
+- Login validation
+- Balance validation
+- Transfer scenarios
+- Transaction history
+- Hybrid API + UI validation
+- Real mobile interaction with Appium (Chrome)
+
 ## How to Run
 ```bash
 pytest -v -s
