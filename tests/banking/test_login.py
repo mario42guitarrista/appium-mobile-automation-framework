@@ -1,25 +1,27 @@
+import json
+from pathlib import Path
+from utils.logger import logger
+
 from pages.banking.login_page import LoginPage
 
 
-def test_login_required_fields(driver):
+def load_users():
+    file_path = Path("data/users.json")
+    with open(file_path, "r", encoding="utf-8") as file:
+        return json.load(file)
+
+
+def test_login_data_driven(driver):
+    logger.info("Starting login data-driven test")
+
     login = LoginPage(driver)
+    users = load_users()
 
-    result = login.validate_login("", "")
+    for user in users:
+        logger.info(f"Testing user: {user['username']}")
 
-    assert result == "required_fields"
+        result = login.validate_login(user["username"], user["password"])
 
+        logger.info(f"Result: {result}")
 
-def test_login_invalid_credentials(driver):
-    login = LoginPage(driver)
-
-    result = login.validate_login("user", "wrong")
-
-    assert result == "invalid_credentials"
-
-
-def test_login_success(driver):
-    login = LoginPage(driver)
-
-    result = login.validate_login("admin", "1234")
-
-    assert result == "success"
+        assert result == user["expected"]
