@@ -163,6 +163,20 @@ pytest -v -s
 * Real mobile automation with Appium
 * Scalable test architecture
 
+## QA Failure Analyzer Agent
+
+The project includes a QA Failure Analyzer Agent designed to classify common automation failures and suggest probable causes.
+
+Covered categories:
+- stale element reference
+- locator/timing issues
+- timeout failures
+- assertion failures
+
+Benefits:
+- faster triage
+- better debugging support
+- more maintainable automation suites
 ---
 
 ## Author
