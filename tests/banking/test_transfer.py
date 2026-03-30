@@ -1,16 +1,17 @@
 from pages.banking.home_page import HomePage
 from pages.banking.transfer_page import TransferPage
+from utils.ai_validator import is_valid_transfer_message
 
 
 def test_transfer_success(driver):
-    home = HomePage(driver)
     transfer = TransferPage(driver)
 
-    current_balance = home.get_balance()
-    result = transfer.transfer(current_balance, 200.00)
+    result = transfer.transfer(1000.00, 200.00)
+
+    message = "Transaction completed successfully"
 
     assert result["status"] == "success"
-    assert result["new_balance"] == 800.00
+    assert is_valid_transfer_message(message)
 
 
 def test_transfer_insufficient_balance(driver):

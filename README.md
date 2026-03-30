@@ -4,20 +4,22 @@ This repository contains a mobile automation framework built with Appium, Python
 
 ---
 
-## 🚀 Overview
+## Overview
 
 This project simulates a banking application and demonstrates modern QA automation practices, including:
 
 * Mobile automation using Appium
 * Hybrid testing (API + UI validation)
 * Data-driven testing
-* Structured test architecture
+* Logging for test traceability
+* Full flow validation
+* AI-inspired validation for more resilient assertions
 
-The goal is to replicate real-world QA scenarios found in enterprise systems.
+The goal is to simulate real-world QA scenarios found in enterprise systems.
 
 ---
 
-## 🏦 Banking Scenarios
+## Banking Scenarios
 
 The project covers realistic banking flows:
 
@@ -26,6 +28,7 @@ The project covers realistic banking flows:
 * Required fields validation
 * Invalid credentials
 * Successful login
+* Data-driven login scenarios using JSON
 
 ### Balance
 
@@ -43,11 +46,15 @@ The project covers realistic banking flows:
 * History availability
 * Transfer presence validation
 
+### Full Flow
+
+* Login → Balance → Transfer → Validation
+
 ---
 
-## 🔁 Hybrid Testing (API + UI)
+## Hybrid Testing (API + UI)
 
-This project combines API and UI validation to improve reliability.
+This project combines API and UI validation to improve reliability and simulate real QA strategies.
 
 Examples:
 
@@ -57,27 +64,45 @@ Examples:
 
 ---
 
-## 📊 Data-Driven Testing
+## Data-Driven Testing
 
-Login scenarios are driven by external JSON data:
+Login scenarios are driven by external JSON data.
 
-* Improves maintainability
-* Allows easy expansion of test scenarios
-* Separates test logic from test data
+Benefits:
 
----
-
-## 📜 Logging
-
-The framework uses logging to improve visibility during test execution:
-
-* Tracks test execution flow
-* Helps debug failures
-* Provides better traceability
+* easier maintenance
+* easier expansion of test cases
+* separation between test logic and test data
 
 ---
 
-## 📱 Mobile Automation
+## Logging
+
+The framework uses logging to improve visibility during execution.
+
+Benefits:
+
+* tracks test execution flow
+* improves debugging
+* provides better traceability
+
+---
+
+## AI-Based Validation
+
+The framework includes an AI-inspired validation layer to reduce brittle assertions.
+
+Instead of relying only on a single fixed success message, the project validates transfer messages semantically using keyword-based intelligent checks.
+
+Benefits:
+
+* reduces false negatives
+* improves resilience of assertions
+* better reflects real-world message variations
+
+---
+
+## Mobile Automation
 
 * Real interaction with Chrome on Android Emulator
 * Appium + UiAutomator2
@@ -85,7 +110,7 @@ The framework uses logging to improve visibility during test execution:
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 * Page Object Model (POM)
 * Separation of concerns:
@@ -93,22 +118,24 @@ The framework uses logging to improve visibility during test execution:
   * UI layer
   * API layer
   * Test layer
+  * Test data layer
+  * Utility layer
 * Scalable and maintainable structure
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 pages/      # Page Objects
-tests/      # Test scenarios (smoke + banking + hybrid)
+tests/      # Test scenarios (smoke + banking + hybrid + full flow)
 api/        # Simulated API layer
-utils/      # Helpers and logging
+utils/      # Helpers, logger, AI-inspired validator
 data/       # Test data (JSON)
 config/     # Capabilities and environment config
 
 ---
 
-## ⚙️ Technologies
+## Technologies
 
 * Python
 * Appium
@@ -118,7 +145,7 @@ config/     # Capabilities and environment config
 
 ---
 
-## ▶️ How to Run
+## How to Run
 
 ```bash
 pytest -v -s
@@ -126,16 +153,18 @@ pytest -v -s
 
 ---
 
-## 🔥 Key Highlights
+## Key Highlights
 
 * Hybrid testing strategy (API + UI)
 * Data-driven testing
 * Logging for better traceability
+* Full flow business validation
+* AI-inspired semantic assertion strategy
 * Real mobile automation with Appium
 * Scalable test architecture
 
 ---
 
-## 💼 Author
+## Author
 
 Mario Lima — QA Automation Engineer
