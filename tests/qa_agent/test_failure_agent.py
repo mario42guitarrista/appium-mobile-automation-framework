@@ -39,3 +39,30 @@ def test_analyze_assertion_error():
     )
 
     assert result["category"] == "assertion_failure"
+
+from utils.qa_failure_agent import QAFailureAgent
+
+
+def test_format_report_for_timeout():
+    agent = QAFailureAgent()
+
+    report = agent.format_report(
+        "selenium.common.exceptions.TimeoutException"
+    )
+
+    assert "Category: timeout" in report
+    assert "Probable cause:" in report
+    assert "Suggestion:" in report
+
+
+def test_analyze_realistic_stacktrace():
+    agent = QAFailureAgent()
+
+    error_message = """
+    selenium.common.exceptions.NoSuchElementException:
+    Message: no such element: Unable to locate element
+    """
+
+    result = agent.analyze_failure(error_message)
+
+    assert result["category"] == "locator_or_timing"    
