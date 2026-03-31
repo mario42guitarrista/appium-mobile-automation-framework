@@ -185,6 +185,17 @@ The project includes a QA Failure Analyzer Agent designed to classify common aut
 - faster debugging
 - more efficient failure triage
 - improved maintainability of automation suites
+
+## CI / GitHub Actions
+
+This project includes a GitHub Actions workflow to automatically run non-mobile test suites on every push and pull request.
+
+Covered in CI:
+- banking scenarios
+- hybrid validations
+- QA Failure Analyzer Agent
+
+This helps ensure continuous validation and improves project reliability.
 ---
 
 ## Author

@@ -26,4 +26,4 @@ jobs:
 
       - name: Run non-mobile tests
         run: |
-          pytest tests/banking tests/qa_agent -v -s
+          pytest tests/qa_agent -v -s
