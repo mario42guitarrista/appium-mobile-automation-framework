@@ -1,34 +1,37 @@
-# Mobile Automation Framework - Appium + Python
+# 📱 Mobile Banking QA Automation Platform
 
-This repository contains a mobile automation framework built with Appium, Python, and Pytest.
-
----
-
-## Overview
-
-This project simulates a banking application and demonstrates modern QA automation practices, including:
-
-* Mobile automation using Appium
-* Hybrid testing (API + UI validation)
-* Data-driven testing
-* Logging for test traceability
-* Full flow validation
-* AI-inspired validation for more resilient assertions
-
-The goal is to simulate real-world QA scenarios found in enterprise systems.
+**Appium | Python | Pytest | AI-driven Testing**
 
 ---
 
-## Banking Scenarios
+## 🚀 Overview
 
-The project covers realistic banking flows:
+End-to-end mobile test automation framework simulating a real-world banking system.
 
-### Login
+This project demonstrates modern QA engineering practices focused on scalability, reliability, and intelligent failure analysis.
+
+---
+
+## 🧠 Key Highlights
+
+* 📲 Mobile automation with Appium (Android Emulator)
+* 🔄 End-to-end business flows (login → transfer → validation)
+* 🔗 Hybrid testing strategy (API + UI validation)
+* 📊 Data-driven testing (JSON-based scenarios)
+* 🧾 Structured logging for traceability
+* 🤖 AI-powered failure analysis (QA Failure Analyzer Agent)
+* ⚙️ CI/CD integration with GitHub Actions
+
+---
+
+## 🏦 Business Scenarios Covered
+
+### Authentication
 
 * Required fields validation
 * Invalid credentials
 * Successful login
-* Data-driven login scenarios using JSON
+* Data-driven scenarios
 
 ### Balance
 
@@ -44,7 +47,7 @@ The project covers realistic banking flows:
 ### Transaction History
 
 * History availability
-* Transfer presence validation
+* Transfer validation
 
 ### Full Flow
 
@@ -52,100 +55,98 @@ The project covers realistic banking flows:
 
 ---
 
-## Hybrid Testing (API + UI)
+## 🔗 Hybrid Testing (API + UI)
 
-This project combines API and UI validation to improve reliability and simulate real QA strategies.
+The framework combines API and UI validation to improve reliability and reduce flakiness.
 
 Examples:
 
-* Login validated via API and UI
-* Balance validated via API and UI
-* Transaction history validated via API and UI
+* Login validation via API + UI
+* Balance validation via API + UI
+* Transaction validation via API + UI
 
 ---
 
-## Data-Driven Testing
+## 🤖 QA Failure Analyzer Agent
 
-Login scenarios are driven by external JSON data.
+A custom-built failure analysis module designed to improve debugging efficiency.
+
+### Features
+
+* Failure classification (timeout, locator issues, stale elements, assertions)
+* Probable root cause detection
+* Suggested corrective actions
+* Stacktrace analysis
+
+### Impact
+
+* Faster triage
+* Reduced debugging time
+* Improved test suite maintainability
+
+---
+
+## 🧠 AI-Inspired Validation
+
+Implements semantic validation to reduce brittle assertions.
+
+Instead of relying on fixed messages, the framework validates outcomes using intelligent keyword-based logic.
+
+---
+
+## 📊 Data-Driven Testing
+
+Test scenarios are powered by external JSON data.
 
 Benefits:
 
-* easier maintenance
-* easier expansion of test cases
-* separation between test logic and test data
+* Scalability
+* Maintainability
+* Clear separation of logic and data
 
 ---
 
-## Logging
-
-The framework uses logging to improve visibility during execution.
-
-Benefits:
-
-* tracks test execution flow
-* improves debugging
-* provides better traceability
-
----
-
-## AI-Based Validation
-
-The framework includes an AI-inspired validation layer to reduce brittle assertions.
-
-Instead of relying only on a single fixed success message, the project validates transfer messages semantically using keyword-based intelligent checks.
-
-Benefits:
-
-* reduces false negatives
-* improves resilience of assertions
-* better reflects real-world message variations
-
----
-
-## Mobile Automation
-
-* Real interaction with Chrome on Android Emulator
-* Appium + UiAutomator2
-* Element validation and navigation
-
----
-
-## Architecture
+## 🏗️ Architecture
 
 * Page Object Model (POM)
-* Separation of concerns:
+* Domain separation (`banking`, `smoke`, `qa_agent`)
+* Modular structure:
 
-  * UI layer
-  * API layer
-  * Test layer
-  * Test data layer
-  * Utility layer
-* Scalable and maintainable structure
-
----
-
-## Project Structure
-
-pages/      # Page Objects
-tests/      # Test scenarios (smoke + banking + hybrid + full flow)
-api/        # Simulated API layer
-utils/      # Helpers, logger, AI-inspired validator
-data/       # Test data (JSON)
-config/     # Capabilities and environment config
+  * `pages/` → UI abstraction
+  * `tests/` → Test scenarios
+  * `api/` → Simulated backend validation
+  * `utils/` → Helpers and utilities
+  * `data/` → Test data
+  * `config/` → Environment setup
 
 ---
 
-## Technologies
+## 📁 Project Structure
 
-* Python
-* Appium
-* Pytest
-* Android Emulator
-* UiAutomator2
+```bash
+pages/
+tests/
+api/
+utils/
+data/
+config/
+.github/workflows/
+```
 
 ---
 
-## How to Run
+## ⚙️ CI/CD
+
+GitHub Actions workflow executes non-mobile test suites automatically on:
+
+* push
+* pull request
+
+Ensures continuous validation and stability.
+
+---
+
+## ▶️ How to Run
 
 ```bash
 pytest -v -s
@@ -153,51 +154,18 @@ pytest -v -s
 
 ---
 
-## Key Highlights
+## 💡 Why This Project
 
-* Hybrid testing strategy (API + UI)
-* Data-driven testing
-* Logging for better traceability
-* Full flow business validation
-* AI-inspired semantic assertion strategy
-* Real mobile automation with Appium
-* Scalable test architecture
+This project was designed to simulate real-world QA challenges in financial systems, focusing on:
 
-## QA Failure Analyzer Agent
+* scalability
+* maintainability
+* reliability
+* intelligent test validation
 
-The project includes a QA Failure Analyzer Agent designed to classify common automation failures and support faster triage.
-
-### Covered categories
-- stale element reference
-- locator/timing issues
-- timeout failures
-- assertion failures
-
-### Features
-- failure categorization
-- probable cause suggestion
-- remediation guidance
-- formatted failure report
-- realistic stacktrace analysis
-- execution logging
-
-### Benefits
-- faster debugging
-- more efficient failure triage
-- improved maintainability of automation suites
-
-## CI / GitHub Actions
-
-This project includes a GitHub Actions workflow to automatically run non-mobile test suites on every push and pull request.
-
-Covered in CI:
-- banking scenarios
-- hybrid validations
-- QA Failure Analyzer Agent
-
-This helps ensure continuous validation and improves project reliability.
 ---
 
-## Author
+## 👨‍💻 Author
 
-Mario Lima — QA Automation Engineer
+Mario Lima
+QA Automation Engineer focused on modern test architecture and AI-driven testing

@@ -1,7 +1,7 @@
-from pages.login_page import LoginPage
 import pytest
+from pages.login_page import LoginPage
 
-pytest.skip("Login será implementado na fase banking", allow_module_level=True)
+pytest.skip("Legacy smoke login. Banking flow is now the official implementation.", allow_module_level=True)
 
 def test_login_success(driver):
     login = LoginPage(driver)
@@ -11,6 +11,7 @@ def test_login_success(driver):
 
 
 def test_login_invalid(driver):
+    
     login = LoginPage(driver)
     login.login("user", "wrong")
 
