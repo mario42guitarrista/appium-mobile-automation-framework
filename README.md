@@ -165,18 +165,26 @@ pytest -v -s
 
 ## QA Failure Analyzer Agent
 
-The project includes a QA Failure Analyzer Agent designed to classify common automation failures and suggest probable causes.
+The project includes a QA Failure Analyzer Agent designed to classify common automation failures and support faster triage.
 
-Covered categories:
+### Covered categories
 - stale element reference
 - locator/timing issues
 - timeout failures
 - assertion failures
 
-Benefits:
-- faster triage
-- better debugging support
-- more maintainable automation suites
+### Features
+- failure categorization
+- probable cause suggestion
+- remediation guidance
+- formatted failure report
+- realistic stacktrace analysis
+- execution logging
+
+### Benefits
+- faster debugging
+- more efficient failure triage
+- improved maintainability of automation suites
 ---
 
 ## Author
