@@ -1,19 +1,19 @@
+import requests
+from config.settings import BASE_API_URL
+
+
 class AuthAPI:
-
-    def login(self, username, password):
-        if username == "" or password == "":
-            return {
-                "status": "required_fields",
-                "message": "Username and password are required"
+    @staticmethod
+    def login(username: str, password: str) -> dict:
+        response = requests.post(
+            f"{BASE_API_URL}/login",
+            json={
+                "username": username,
+                "password": password
             }
-
-        if username != "admin" or password != "1234":
-            return {
-                "status": "invalid_credentials",
-                "message": "Invalid username or password"
-            }
+        )
 
         return {
-            "status": "success",
-            "token": "fake-jwt-token-123"
+            "status_code": response.status_code,
+            "body": response.json()
         }

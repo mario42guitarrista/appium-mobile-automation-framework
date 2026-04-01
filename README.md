@@ -1,14 +1,22 @@
 # 📱 Mobile Banking QA Automation Platform
 
-**Appium | Python | Pytest | AI-driven Testing**
+**Appium | Python | Pytest | AI-driven Testing | Docker**
 
 ---
 
 ## 🚀 Overview
 
-End-to-end mobile test automation framework simulating a real-world banking system.
+End-to-end QA automation platform simulating a real-world mobile banking system.
 
-This project demonstrates modern QA engineering practices focused on scalability, reliability, and intelligent failure analysis.
+This project goes beyond traditional test automation by combining:
+
+* Mobile automation
+* API validation
+* AI-assisted failure analysis
+* CI/CD integration
+* Dockerized backend environment
+
+It was designed to reflect real QA challenges found in modern distributed systems.
 
 ---
 
@@ -19,8 +27,10 @@ This project demonstrates modern QA engineering practices focused on scalability
 * 🔗 Hybrid testing strategy (API + UI validation)
 * 📊 Data-driven testing (JSON-based scenarios)
 * 🧾 Structured logging for traceability
-* 🤖 AI-powered failure analysis (QA Failure Analyzer Agent)
-* ⚙️ CI/CD integration with GitHub Actions
+* 🤖 AI-powered failure analysis (custom Failure Analyzer)
+* 📁 Automatic failure report generation (JSON)
+* ⚙️ CI/CD with GitHub Actions
+* 🐳 Dockerized mock API for controlled testing environment
 
 ---
 
@@ -35,8 +45,7 @@ This project demonstrates modern QA engineering practices focused on scalability
 
 ### Balance
 
-* Balance visibility
-* Balance validation
+* Balance validation via API and UI
 
 ### Transfer
 
@@ -46,8 +55,8 @@ This project demonstrates modern QA engineering practices focused on scalability
 
 ### Transaction History
 
-* History availability
-* Transfer validation
+* History validation
+* Transfer verification
 
 ### Full Flow
 
@@ -57,67 +66,83 @@ This project demonstrates modern QA engineering practices focused on scalability
 
 ## 🔗 Hybrid Testing (API + UI)
 
-The framework combines API and UI validation to improve reliability and reduce flakiness.
+This project combines API and UI validation to reduce flakiness and improve confidence.
 
 Examples:
 
-* Login validation via API + UI
-* Balance validation via API + UI
-* Transaction validation via API + UI
+* Login validated via API and UI
+* Balance validated via API and UI
+* Transfer validated via API + business rules
 
 ---
 
-## 🤖 QA Failure Analyzer Agent
+## 🤖 AI Failure Analyzer
 
-A custom-built failure analysis module designed to improve debugging efficiency.
+A custom-built failure analysis module integrated into the test execution lifecycle.
 
 ### Features
 
 * Failure classification (timeout, locator issues, stale elements, assertions)
 * Probable root cause detection
 * Suggested corrective actions
-* Stacktrace analysis
+* Automatic execution on test failure
+* JSON report generation for each failure
 
-### Impact
+### Example Output
 
-* Faster triage
-* Reduced debugging time
-* Improved test suite maintainability
+```json
+{
+  "error_type": "AssertionFailure",
+  "possible_cause": "Validation did not match expected result",
+  "suggestion": "Review expected vs actual outcome"
+}
+```
+
+---
+
+## 📊 Failure Reporting
+
+On test failure, the framework automatically:
+
+* captures screenshots
+* analyzes failure using AI logic
+* generates structured JSON reports
+
+Location:
+
+```bash
+reports/failure_analysis/
+```
 
 ---
 
 ## 🧠 AI-Inspired Validation
 
-Implements semantic validation to reduce brittle assertions.
+Implements semantic validation strategies to reduce brittle assertions.
 
-Instead of relying on fixed messages, the framework validates outcomes using intelligent keyword-based logic.
-
----
-
-## 📊 Data-Driven Testing
-
-Test scenarios are powered by external JSON data.
-
-Benefits:
-
-* Scalability
-* Maintainability
-* Clear separation of logic and data
+Instead of relying only on exact strings, the framework validates outcomes using intelligent logic.
 
 ---
 
 ## 🏗️ Architecture
 
 * Page Object Model (POM)
-* Domain separation (`banking`, `smoke`, `qa_agent`)
-* Modular structure:
+* Modular structure
+* Domain separation:
 
-  * `pages/` → UI abstraction
-  * `tests/` → Test scenarios
-  * `api/` → Simulated backend validation
-  * `utils/` → Helpers and utilities
-  * `data/` → Test data
-  * `config/` → Environment setup
+  * `banking`
+  * `qa_agent`
+  * `smoke`
+
+### Layers
+
+* `pages/` → UI abstraction
+* `tests/` → Test scenarios
+* `api/` → API integration layer
+* `utils/` → Helpers and infrastructure
+* `ai/` → Failure analysis engine
+* `config/` → Environment configuration
+* `data/` → Test data
 
 ---
 
@@ -128,44 +153,84 @@ pages/
 tests/
 api/
 utils/
-data/
+ai/
 config/
+data/
+mock_api/
 .github/workflows/
 ```
 
 ---
 
-## ⚙️ CI/CD
+## 🐳 Mock API (Docker)
 
-GitHub Actions workflow executes non-mobile test suites automatically on:
+A fully functional mock banking API is included to simulate backend behavior.
+
+### Run with Docker
+
+```bash
+docker compose up --build
+```
+
+### Base URL
+
+```
+http://127.0.0.1:5000
+```
+
+### Available Endpoints
+
+* `POST /login`
+* `GET /balance/<username>`
+* `POST /transfer`
+* `GET /history/<username>`
+
+---
+
+## ⚙️ CI/CD (GitHub Actions)
+
+Automated test execution on:
 
 * push
 * pull request
 
-Ensures continuous validation and stability.
+Includes:
+
+* QA Agent tests
+* Failure analysis artifact upload
+* Screenshot artifact upload
 
 ---
 
-## ▶️ How to Run
+## ▶️ Running Tests
+
+### Run all tests
 
 ```bash
 pytest -v -s
+```
+
+### Run non-mobile tests
+
+```bash
+pytest tests/qa_agent -v -s
 ```
 
 ---
 
 ## 💡 Why This Project
 
-This project was designed to simulate real-world QA challenges in financial systems, focusing on:
+This project was designed to simulate real-world QA engineering challenges:
 
-* scalability
-* maintainability
-* reliability
-* intelligent test validation
+* scalable automation architecture
+* hybrid testing strategy
+* intelligent failure analysis
+* reproducible environments (Docker)
+* CI/CD integration
 
 ---
 
 ## 👨‍💻 Author
 
 Mario Lima
-QA Automation Engineer focused on modern test architecture and AI-driven testing
+QA Automation Engineer focused on modern test architecture, AI-driven testing, and scalable QA solutions.

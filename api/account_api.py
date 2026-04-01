@@ -1,28 +1,37 @@
-class AccountAPI:
+import requests
+from config.settings import BASE_API_URL
 
-    def get_balance(self, token):
-        if token != "fake-jwt-token-123":
-            return {
-                "status": "unauthorized",
-                "balance": None
-            }
+
+class AccountAPI:
+    @staticmethod
+    def get_balance(username: str) -> dict:
+        response = requests.get(f"{BASE_API_URL}/balance/{username}")
 
         return {
-            "status": "success",
-            "balance": 1000.00
+            "status_code": response.status_code,
+            "body": response.json()
         }
 
-    def get_transaction_history(self, token):
-        if token != "fake-jwt-token-123":
-            return {
-                "status": "unauthorized",
-                "transactions": []
-            }
+    @staticmethod
+    def get_history(username: str) -> dict:
+        response = requests.get(f"{BASE_API_URL}/history/{username}")
 
         return {
-            "status": "success",
-            "transactions": [
-                {"type": "transfer", "amount": 200.00},
-                {"type": "deposit", "amount": 500.00}
-            ]
+            "status_code": response.status_code,
+            "body": response.json()
+        }
+
+    @staticmethod
+    def transfer(username: str, amount: float) -> dict:
+        response = requests.post(
+            f"{BASE_API_URL}/transfer",
+            json={
+                "username": username,
+                "amount": amount
+            }
+        )
+
+        return {
+            "status_code": response.status_code,
+            "body": response.json()
         }

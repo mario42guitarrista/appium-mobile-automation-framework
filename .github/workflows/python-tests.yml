@@ -27,3 +27,19 @@ jobs:
       - name: Run non-mobile tests
         run: |
           pytest tests/qa_agent -v -s
+
+      - name: Upload failure analysis artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failure-analysis-reports
+          path: reports/failure_analysis/
+          if-no-files-found: ignore
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: screenshots/
+          if-no-files-found: ignore

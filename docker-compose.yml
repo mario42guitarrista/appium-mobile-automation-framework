@@ -1,0 +1,8 @@
+version: "3.9"
+
+services:
+  mock-api:
+    build: ./mock_api
+    container_name: mock_api_service
+    ports:
+      - "5000:5000"

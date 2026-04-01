@@ -1,0 +1,10 @@
+{
+    "test_name": "tests/banking/test_transfer.py::test_transfer_success",
+    "timestamp": "20260331_173731",
+    "analysis": {
+        "error_type": "AssertionFailure",
+        "possible_cause": "Validation did not match expected result",
+        "suggestion": "Review expected vs actual outcome"
+    },
+    "error_message": "driver = <appium.webdriver.webdriver.WebDriver (session=\"4c8b2d5c-eadb-4a88-b4df-3ca46f523798\")>\n\n    def test_transfer_success(driver):\n        transfer = TransferPage(driver)\n    \n        result = transfer.transfer(1000.00, 200.00)\n    \n        message = \"Transaction completed successfully\"\n    \n>       assert result[\"status\"] == \"fail\"\nE       AssertionError: assert 'success' == 'fail'\nE         \nE         \u001b[0m\u001b[91m- fail\u001b[39;49;00m\u001b[90m\u001b[39;49;00m\nE         \u001b[92m+ success\u001b[39;49;00m\u001b[90m\u001b[39;49;00m\n\ntests\\banking\\test_transfer.py:13: AssertionError"
+}

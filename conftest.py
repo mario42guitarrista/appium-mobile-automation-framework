@@ -7,6 +7,7 @@ if PROJECT_ROOT not in sys.path:
     sys.path.insert(0, PROJECT_ROOT)
 
 from utils.screenshots import save_screenshot
+from utils.failure_reporter import save_failure_analysis
 
 
 @pytest.fixture
@@ -25,6 +26,30 @@ def pytest_runtest_makereport(item, call):
 
     if report.when == "call" and report.failed:
         driver = item.funcargs.get("driver")
+
+        # Screenshot
         if driver:
             file_path = save_screenshot(driver)
             print(f"\nScreenshot salvo em: {file_path}")
+
+        # AI Failure Analyzer
+        try:
+            from ai.failure_analyzer import FailureAnalyzer
+
+            analyzer = FailureAnalyzer()
+            error_message = str(report.longrepr)
+            analysis = analyzer.analyze(error_message)
+
+            print("\n=== AI Failure Analysis ===")
+            for key, value in analysis.items():
+                print(f"{key}: {value}")
+
+            report_path = save_failure_analysis(
+                test_name=item.nodeid,
+                analysis=analysis,
+                error_message=error_message
+            )
+            print(f"\nFailure analysis salva em: {report_path}")
+
+        except Exception as e:
+            print(f"\n[Analyzer Error] {e}")
