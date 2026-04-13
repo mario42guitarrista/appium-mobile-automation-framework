@@ -29,7 +29,29 @@ class FailureAnalyzer:
                 "Validation did not match expected result",
                 "Review expected vs actual outcome"
             )
+        
+        if "nameerror" in msg:
+            return self._build_response(
+                "NameError",
+                "A referenced name or class was not defined",
+                "Check missing imports, variable names, or refactoring leftovers"
+            )
 
+        if "attributeerror" in msg:
+            return self._build_response(
+                "AttributeError",
+                "Object does not expose the expected method or attribute",
+                "Verify class implementation and method names"
+            )
+
+        if "importerror" in msg:
+            return self._build_response(
+                "ImportError",
+                "Module or symbol could not be imported correctly",
+                "Review imports, file names, and circular dependencies"
+            )
+
+        
         return self._build_response(
             "Unknown",
             "Unmapped failure pattern",

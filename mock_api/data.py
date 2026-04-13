@@ -1,4 +1,6 @@
-USERS = {
+import copy
+
+INITIAL_USERS = {
     "mario_user": {
         "password": "123456",
         "balance": 1000.0,
@@ -8,3 +10,5 @@ USERS = {
         ]
     }
 }
+
+USERS = copy.deepcopy(INITIAL_USERS)

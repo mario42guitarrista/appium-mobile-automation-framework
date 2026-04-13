@@ -1,0 +1,3 @@
+from utils.summary_reporter import print_execution_summary
+
+print_execution_summary()

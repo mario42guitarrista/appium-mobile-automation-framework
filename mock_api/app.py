@@ -1,5 +1,6 @@
+import copy
 from flask import Flask, request, jsonify
-from data import USERS
+from data import USERS, INITIAL_USERS
 
 app = Flask(__name__)
 
@@ -70,6 +71,17 @@ def history(username):
     return jsonify({
         "status": "success",
         "history": user["history"]
+    }), 200
+
+
+@app.route("/reset", methods=["POST"])
+def reset_data():
+    USERS.clear()
+    USERS.update(copy.deepcopy(INITIAL_USERS))
+
+    return jsonify({
+        "status": "success",
+        "message": "Mock data reset"
     }), 200
 
 

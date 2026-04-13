@@ -1,4 +1,8 @@
 from utils.qa_failure_agent import QAFailureAgent
+import pytest
+
+@pytest.mark.api
+
 
 
 def test_failure_agent_demo():

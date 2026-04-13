@@ -1,4 +1,8 @@
 from utils.qa_failure_agent import QAFailureAgent
+import pytest
+
+@pytest.mark.api
+
 
 
 def test_analyze_stale_element():
