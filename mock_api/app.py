@@ -22,6 +22,35 @@ def login():
     return jsonify({"status": "success", "message": "Login successful"}), 200
 
 
+@app.route("/create_user", methods=["POST"])
+def create_user():
+    payload = request.get_json()
+    username = payload.get("username")
+    password = payload.get("password", "123456")
+    balance = payload.get("balance", 1000.0)
+
+    if not username:
+        return jsonify({"status": "error", "message": "Username is required"}), 400
+
+    if username in USERS:
+        return jsonify({"status": "error", "message": "User already exists"}), 409
+
+    USERS[username] = {
+        "password": password,
+        "balance": balance,
+        "history": []
+    }
+
+    return jsonify({
+        "status": "success",
+        "message": "User created successfully",
+        "user": {
+            "username": username,
+            "balance": balance
+        }
+    }), 201
+
+
 @app.route("/balance/<username>", methods=["GET"])
 def get_balance(username):
     user = USERS.get(username)

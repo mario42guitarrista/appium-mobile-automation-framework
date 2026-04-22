@@ -43,6 +43,34 @@ It was designed to reflect real QA challenges found in modern distributed system
 
 ---
 
+## 🧪 Dynamic Test Data Management
+
+To eliminate flakiness caused by shared or static test data, this project implements dynamic test data generation.
+
+### Approach
+
+- Generate a unique user for each test execution  
+- Create test data via API before running the test  
+- Ensure full isolation between test runs  
+
+### Example Flow
+
+- Generate user dynamically  
+- Create user via API (`POST /create_user`)  
+- Execute test using isolated data  
+- Validate results independently  
+
+### Benefits
+
+- Eliminates test data conflicts  
+- Enables parallel execution  
+- Improves reproducibility  
+- Increases test reliability  
+
+This approach reflects real-world QA practices for scalable and maintainable test automation.
+
+---
+
 ## 🏷️ Test Tagging (Pytest)
 
 - Smoke tests  
@@ -220,6 +248,7 @@ Base URL:
 Available Endpoints:
 
 - POST /login  
+- POST /create_user  
 - GET /balance/<username>  
 - POST /transfer  
 - GET /history/<username>  
@@ -271,6 +300,7 @@ This project was designed to simulate real-world QA engineering challenges:
 - CI/CD integration  
 - robust API interaction  
 - structured test execution  
+- dynamic test data management  
 
 ---
 

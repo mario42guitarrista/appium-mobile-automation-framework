@@ -2,3 +2,4 @@ Appium-Python-Client
 pytest
 pytest-html
 requests==2.32.3
+pytest-xdist

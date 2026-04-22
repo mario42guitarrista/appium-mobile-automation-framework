@@ -52,6 +52,20 @@ class AccountAPI:
             }
 
     @staticmethod
+    def create_user(username: str, password: str = "123456", balance: float = 1000.0) -> dict:
+        return AccountAPI._handle_request(
+            lambda: requests.post(
+                f"{BASE_API_URL}/create_user",
+                json={
+                    "username": username,
+                    "password": password,
+                    "balance": balance
+                },
+                timeout=AccountAPI.DEFAULT_TIMEOUT
+            )
+        )
+
+    @staticmethod
     def get_balance(username: str) -> dict:
         return AccountAPI._handle_request(
             lambda: requests.get(

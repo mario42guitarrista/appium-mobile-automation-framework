@@ -1,0 +1,10 @@
+{
+    "test_name": "tests/banking/test_transfer_hybrid.py::test_transfer_api_validation",
+    "timestamp": "20260417_160658",
+    "analysis": {
+        "error_type": "AssertionFailure",
+        "possible_cause": "Validation did not match expected result",
+        "suggestion": "Review expected vs actual outcome"
+    },
+    "error_message": "@pytest.mark.hybrid\n    @pytest.mark.api\n    \n    def test_transfer_api_validation():\n        username = \"mario_user\"\n    \n        initial_balance_response = AccountAPI.get_balance(username)\n>       assert initial_balance_response[\"status_code\"] == 200\nE       assert 0 == 200\n\ntests\\banking\\test_transfer_hybrid.py:11: AssertionError"
+}
