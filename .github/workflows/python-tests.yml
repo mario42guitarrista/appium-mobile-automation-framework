@@ -24,22 +24,23 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run non-mobile tests
+      - name: Start mock API
         run: |
-          pytest tests/qa_agent -v -s
+          docker compose up -d --build
 
-      - name: Upload failure analysis artifacts
+      - name: Wait for mock API
+        run: |
+          sleep 5
+
+      - name: Run parallel non-mobile tests
+        run: |
+          pytest tests/qa_agent tests/banking/test_transfer_hybrid.py -n 2 -v -s
+
+      - name: Upload execution reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: failure-analysis-reports
-          path: reports/failure_analysis/
-          if-no-files-found: ignore
-
-      - name: Upload screenshots
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: screenshots
-          path: screenshots/
-          if-no-files-found: ignore
+          name: execution-reports
+          path: |
+            reports/
+            screenshots/

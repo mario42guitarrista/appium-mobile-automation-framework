@@ -1,6 +1,10 @@
 import pytest
 from api.account_api import AccountAPI
-from utils.data_factory import generate_user, generate_password, generate_initial_balance
+from utils.data_factory import (
+    generate_user,
+    generate_password,
+    generate_initial_balance,
+)
 
 
 @pytest.mark.hybrid
@@ -9,9 +13,6 @@ def test_transfer_api_validation():
     username = generate_user()
     password = generate_password()
     initial_balance_value = generate_initial_balance()
-
-    reset_response = AccountAPI.reset_data()
-    assert reset_response["status_code"] == 200
 
     create_user_response = AccountAPI.create_user(
         username=username,
@@ -35,3 +36,45 @@ def test_transfer_api_validation():
     updated_balance = updated_balance_response["body"]["balance"]
 
     assert updated_balance == initial_balance - 200
+
+
+@pytest.mark.hybrid
+@pytest.mark.api
+def test_transfer_insufficient_balance_dynamic():
+    username = generate_user()
+    password = generate_password()
+    initial_balance_value = 100.0
+
+    create_user_response = AccountAPI.create_user(
+        username=username,
+        password=password,
+        balance=initial_balance_value
+    )
+    assert create_user_response["status_code"] == 201
+
+    transfer_response = AccountAPI.transfer(username, 200)
+
+    assert transfer_response["status_code"] == 400
+    assert transfer_response["body"]["status"] == "insufficient_balance"
+    assert transfer_response["body"]["new_balance"] == initial_balance_value
+
+
+@pytest.mark.hybrid
+@pytest.mark.api
+def test_transfer_invalid_amount_dynamic():
+    username = generate_user()
+    password = generate_password()
+    initial_balance_value = 1000.0
+
+    create_user_response = AccountAPI.create_user(
+        username=username,
+        password=password,
+        balance=initial_balance_value
+    )
+    assert create_user_response["status_code"] == 201
+
+    transfer_response = AccountAPI.transfer(username, -50)
+
+    assert transfer_response["status_code"] == 400
+    assert transfer_response["body"]["status"] == "invalid_amount"
+    assert transfer_response["body"]["new_balance"] == initial_balance_value

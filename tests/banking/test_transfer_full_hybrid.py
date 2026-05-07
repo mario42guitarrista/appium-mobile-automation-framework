@@ -11,8 +11,7 @@ def test_transfer_ui_and_api_validation(driver):
     username = "mario_user"
 
     # 🔥 RESET 
-    reset_response = AccountAPI.reset_data()
-    assert reset_response["status_code"] == 200
+    
 
     # 1. saldo inicial via API
     initial_balance_response = AccountAPI.get_balance(username)
