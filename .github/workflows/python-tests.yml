@@ -32,6 +32,7 @@ jobs:
         run: |
           sleep 5
 
+      # 🔥 IMPORTANTE: rodar SOMENTE testes seguros
       - name: Run parallel non-mobile tests
         run: |
           pytest tests/qa_agent tests/banking/test_transfer_hybrid.py -n 2 -v -s
