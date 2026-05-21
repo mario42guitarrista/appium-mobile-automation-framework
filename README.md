@@ -1,191 +1,184 @@
-# 🚀 Mobile Banking QA Automation Platform (Hybrid + AI + Observability)
+# Mobile Banking QA Automation Platform
 
-Appium | Python | Pytest | AI-driven Testing | Docker
+Appium | Python | Pytest | CI/CD | Docker | Hybrid Testing | QA Observability
 
 ---
 
-## 🚀 Overview
+# 🚀 Overview
 
 End-to-end QA automation platform simulating a real-world mobile banking system.
 
 This project goes beyond traditional test automation by combining:
 
-- Mobile automation  
-- API validation  
-- AI-assisted failure analysis  
-- CI/CD integration  
-- Dockerized backend environment  
+- Mobile automation
+- API validation
+- Hybrid testing
+- AI-assisted failure analysis
+- Parallel execution
+- CI/CD integration
+- Execution observability
+- Dockerized backend environment
 
-It was designed to reflect real QA challenges found in modern distributed systems.
-
----
-
-## 🧠 Key Highlights
-
-📲 Mobile automation with Appium (Android Emulator)  
-🔄 End-to-end business flows (login → transfer → validation)  
-🔗 Hybrid testing strategy (API + UI validation)  
-📊 Data-driven testing (JSON-based scenarios)  
-🧾 Structured logging for traceability  
-🤖 AI-powered failure analysis (custom Failure Analyzer)  
-📁 Automatic failure report generation (JSON)  
-⚙️ CI/CD with GitHub Actions  
-🐳 Dockerized mock API for controlled testing environment  
+It was designed to reflect real QA engineering challenges found in modern distributed systems.
 
 ---
 
-## ⚙️ Robust API Layer
+# 🧠 Key Highlights
 
-- Timeout handling  
-- Safe JSON parsing (handles non-JSON responses)  
-- Structured error handling (connection errors, timeouts)  
-- Consistent response format across all endpoints  
-
----
-
-## 🧪 Dynamic Test Data Management
-
-To eliminate flakiness caused by shared or static test data, this project implements dynamic test data generation.
-
-### Approach
-
-- Generate a unique user for each test execution  
-- Create test data via API before running the test  
-- Ensure full isolation between test runs  
-
-### Example Flow
-
-- Generate user dynamically  
-- Create user via API (`POST /create_user`)  
-- Execute test using isolated data  
-- Validate results independently  
-
-### Benefits
-
-- Eliminates test data conflicts  
-- Enables parallel execution  
-- Improves reproducibility  
-- Increases test reliability  
-
-This approach reflects real-world QA practices for scalable and maintainable test automation.
+- 📲 Mobile automation with Appium (Android Emulator)
+- 🔄 End-to-end business flows
+- 🔗 Hybrid testing strategy (API + UI validation)
+- ⚡ Parallel test execution with pytest-xdist
+- 📊 Dynamic test data generation
+- 📈 Execution observability dashboard
+- 🧾 HTML execution reports
+- 🤖 AI-powered failure analysis
+- ⚙️ CI/CD with GitHub Actions
+- 🐳 Dockerized mock API environment
 
 ---
 
-## 🏷️ Test Tagging (Pytest)
+# 🏦 Business Scenarios Covered
 
-- Smoke tests  
-- Regression tests  
-- API tests  
-- Mobile tests  
-- Hybrid tests  
+## Authentication
 
-Example commands:
+- Required fields validation
+- Invalid credentials
+- Successful login
+- Data-driven scenarios
 
-    pytest -m smoke -v
-    pytest -m hybrid -v
-    pytest -m api -v
+## Balance
 
----
+- Balance validation via API and UI
 
-## 📊 Execution Observability
+## Transfer
 
-- Structured execution logs  
-- Execution summary reports  
-- HTML dashboard  
+- Successful transfer
+- Insufficient balance
+- Invalid amount
 
-Dashboard location:
+## Transaction History
 
-    reports/execution_logs/dashboard.html
+- History validation
+- Transfer verification
 
----
+## Full Flow
 
-## 🏦 Business Scenarios Covered
-
-### Authentication
-- Required fields validation  
-- Invalid credentials  
-- Successful login  
-- Data-driven scenarios  
-
-### Balance
-- Balance validation via API and UI  
-
-### Transfer
-- Successful transfer  
-- Insufficient balance  
-- Invalid amount  
-
-### Transaction History
-- History validation  
-- Transfer verification  
-
-### Full Flow
-- Login → Balance → Transfer → Validation  
+- Login → Balance → Transfer → Validation
 
 ---
 
-## 🔗 Hybrid Testing (API + UI)
+# 🔗 Hybrid Testing (API + UI)
 
-This project combines API and UI validation to reduce flakiness and improve confidence.
+This project combines API and UI validation to reduce flaky tests and improve confidence in business validations.
 
 Examples:
 
-- Login validated via API and UI  
-- Balance validated via API and UI  
-- Transfer validated via API + business rules  
+- Login validated via API and UI
+- Balance validated via API and UI
+- Transfer validated via API and business rules
 
 ---
 
-## 🤖 AI Failure Analyzer
+# ⚡ Parallel Execution
+
+The framework supports safe parallel execution using pytest-xdist.
+
+Features:
+
+- Isolated test execution
+- Dynamic user generation
+- Independent API validations
+- Parallel workers support
+- CI/CD-ready execution
+
+Example:
+
+```bash
+pytest tests/qa_agent tests/banking/test_transfer_hybrid.py -n 2 -v -s
+```
+
+---
+
+# 📊 Execution Observability Dashboard
+
+The project includes an automated execution dashboard integrated into the CI/CD pipeline.
+
+Features:
+
+- Parallel execution metrics
+- Execution duration tracking
+- HTML execution reports
+- GitHub Actions artifact generation
+- CI environment visibility
+- Automated dashboard generation
+
+Dashboard example:
+
+```text
+Total Tests: 10
+Passed: 10
+Failed: 0
+Parallel Workers: 2
+Environment: GitHub Actions CI
+```
+
+Generated artifacts include:
+
+- HTML execution reports
+- Visual execution dashboard
+- Execution logs
+- Screenshots (when applicable)
+
+Dashboard location:
+
+```bash
+reports/dashboard.html
+```
+
+---
+
+# 🤖 AI Failure Analyzer
 
 A custom-built failure analysis module integrated into the test execution lifecycle.
 
-### Features
+## Features
 
-- Failure classification (timeout, locator issues, stale elements, assertions)  
-- Probable root cause detection  
-- Suggested corrective actions  
-- Automatic execution on test failure  
-- JSON report generation for each failure  
+- Failure classification
+- Root cause detection
+- Suggested corrective actions
+- Automatic execution on failure
+- JSON report generation
 
-Example output:
+## Example Output
 
+```json
 {
   "error_type": "AssertionFailure",
   "possible_cause": "Validation did not match expected result",
   "suggestion": "Review expected vs actual outcome"
 }
+```
 
 ---
 
-## 📊 Failure Reporting
+# 📊 Failure Reporting
 
 On test failure, the framework automatically:
 
-- captures screenshots  
-- analyzes failure using AI logic  
-- generates structured JSON reports  
+- Captures screenshots
+- Analyzes failures using AI logic
+- Generates structured JSON reports
 
 Location:
 
-    reports/failure_analysis/
+```bash
+reports/failure_analysis/
+```
 
 ---
 
-## 📊 Execution Dashboard
-
-Provides a visual summary of test results:
-
-- Total tests  
-- Passed / Failed  
-- Success rate  
-- Failure types  
-
-Generated after execution for quick analysis.
-
----
-
-## 🧠 AI-Inspired Validation
+# 🧠 AI-Inspired Validation
 
 Implements semantic validation strategies to reduce brittle assertions.
 
@@ -193,118 +186,152 @@ Instead of relying only on exact strings, the framework validates outcomes using
 
 ---
 
-## 🏗️ Architecture
+# 🏗️ Architecture
 
-### Page Object Model (POM)
+## Design Patterns
 
-Modular structure with clear separation of concerns.
+- Page Object Model (POM)
+- Service Layer
+- Modular Architecture
+- Domain Separation
 
-### Domain Separation
+## Layers
 
-- banking  
-- qa_agent  
-- smoke  
-
-### Layers
-
-- pages/ → UI abstraction  
-- tests/ → Test scenarios  
-- api/ → API integration layer  
-- services/ → Business logic abstraction  
-- utils/ → Helpers and infrastructure  
-- ai/ → Failure analysis engine  
-- config/ → Environment configuration  
-- data/ → Test data  
-
----
-
-## 📁 Project Structure
-
-    pages/
-    tests/
-    api/
-    services/
-    utils/
-    ai/
-    config/
-    data/
-    mock_api/
-    .github/workflows/
+```text
+pages/      → UI abstraction
+tests/      → Test scenarios
+services/   → Business logic layer
+api/        → API integration layer
+utils/      → Helpers and infrastructure
+qa_agent/   → Failure analysis engine
+config/     → Environment configuration
+data/       → Test data
+```
 
 ---
 
-## 🐳 Mock API (Docker)
+# 📁 Project Structure
+
+```text
+pages/
+tests/
+services/
+api/
+utils/
+config/
+data/
+mock_api/
+reports/
+.github/workflows/
+```
+
+---
+
+# 🐳 Mock API (Docker)
 
 A fully functional mock banking API is included to simulate backend behavior.
 
-Run with Docker:
+## Run with Docker
 
-    docker compose up --build
+```bash
+docker compose up --build
+```
 
-Base URL:
+## Base URL
 
-    http://127.0.0.1:5000
+```text
+http://127.0.0.1:5000
+```
 
-Available Endpoints:
+## Available Endpoints
 
-- POST /login  
-- POST /create_user  
-- GET /balance/<username>  
-- POST /transfer  
-- GET /history/<username>  
-- POST /reset  
-
----
-
-## ⚙️ CI/CD (GitHub Actions)
-
-Automated test execution on:
-
-- push  
-- pull request  
-
-Includes:
-
-- QA Agent tests  
-- Failure analysis artifact upload  
-- Screenshot artifact upload  
+```text
+POST /login
+POST /create_user
+GET /balance/<username>
+POST /transfer
+GET /history/<username>
+POST /reset
+```
 
 ---
 
-## ▶️ Running Tests
+# ⚙️ CI/CD (GitHub Actions)
 
-Run all tests:
+Automated pipeline execution on:
 
-    pytest -v -s
+- Push
+- Pull Request
 
-Run non-mobile tests:
+Features:
 
-    pytest tests/qa_agent -v -s
-
-Run by tag:
-
-    pytest -m smoke -v
-    pytest -m hybrid -v
-    pytest -m api -v
+- Parallel execution
+- Dockerized environment
+- HTML report generation
+- Execution dashboard generation
+- Artifact upload
+- Non-mobile isolated execution
 
 ---
 
-## 💡 Why This Project
+# 📦 CI/CD Artifacts
+
+The pipeline automatically uploads:
+
+- HTML execution reports
+- Visual execution dashboard
+- Logs
+- Screenshots
+
+Artifacts are available directly inside GitHub Actions.
+
+---
+
+# ▶️ Running Tests
+
+## Run all tests
+
+```bash
+pytest -v -s
+```
+
+## Run non-mobile tests
+
+```bash
+pytest tests/qa_agent tests/banking/test_transfer_hybrid.py -n 2 -v -s
+```
+
+## Run tests with HTML report
+
+```bash
+pytest tests/qa_agent tests/banking/test_transfer_hybrid.py -n 2 -v -s --html=reports/html/report.html --self-contained-html
+```
+
+---
+
+# 💡 Why This Project
 
 This project was designed to simulate real-world QA engineering challenges:
 
-- scalable automation architecture  
-- hybrid testing strategy  
-- intelligent failure analysis  
-- reproducible environments (Docker)  
-- CI/CD integration  
-- robust API interaction  
-- structured test execution  
-- dynamic test data management  
+- Scalable automation architecture
+- Hybrid testing strategy
+- Parallel execution
+- CI/CD integration
+- Intelligent failure analysis
+- Execution observability
+- Reproducible Docker environments
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
-Mario Lima  
-QA Automation Engineer focused on modern test architecture, AI-driven testing, and scalable QA solutions
+Mario Lima
+
+QA Automation Engineer focused on:
+
+- Modern test architecture
+- Quality Engineering
+- AI-driven testing
+- CI/CD pipelines
+- Scalable QA solutions
+- Execution observability
