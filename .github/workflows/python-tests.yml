@@ -32,7 +32,7 @@ jobs:
         run: |
           sleep 5
 
-            - name: Run parallel non-mobile tests with HTML report
+      - name: Run parallel non-mobile tests with HTML report
         run: |
           pytest tests/qa_agent tests/banking/test_transfer_hybrid.py --override-ini="addopts=" -n 2 -v -s --html=reports/html/report.html --self-contained-html
 
