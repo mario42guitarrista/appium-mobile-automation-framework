@@ -38,4 +38,13 @@ jobs:
 
       - name: Generate execution dashboard
         run: |
-          python utils/generate_execution_dashboard.py
+          python -m utils.generate_execution_dashboard
+
+      - name: Upload execution reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: execution-reports
+          path: |
+            reports/
+            screenshots/
